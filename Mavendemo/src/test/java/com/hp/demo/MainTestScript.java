@@ -1,0 +1,36 @@
+package com.hp.demo;
+
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+
+
+public class MainTestScript {
+	@Test
+	public void launch() {
+
+	
+		System.setProperty("webdriver.chrome.driver", "/home/dhanush/Downloads/chromedriver");
+		WebDriver driver=new ChromeDriver();
+		driver.manage().timeouts().pageLoadTimeout(3, TimeUnit.MINUTES);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.MINUTES);
+		driver.get("http://www.magento.com");
+		
+		Welcome wel=new Welcome(driver);
+		wel.clickOnMyAccount();
+		
+		Login l=new Login(driver);
+		l.enterEmail();
+		l.enterPasswrd();
+		l.clickOnlogin();
+		
+		Logout lo=new Logout(driver);
+		lo.clickOnLogout();
+		
+	
+	}
+}
